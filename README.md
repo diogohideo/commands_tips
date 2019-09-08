@@ -3,6 +3,7 @@ Tip & sintax command used in Unix and Windows
 
 # Table of Contents
 1. [Openshift](#openshift)
+   1. [Odo](#odo)
 1. [Git](#git)
 
 <a name="openshift" />
@@ -26,6 +27,12 @@ Tip & sintax command used in Unix and Windows
 * oc adm policy add-role-to-user admin \<username> -n \<project>: Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
 * grant access project to a user
 * oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+
+<href name="odo" />
+
+### Odo
+Abstracts the kubernetes and Openshift concepts so that developer focus on code.
+
 
 <href name="git" />
 
