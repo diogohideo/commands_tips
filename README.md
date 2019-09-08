@@ -31,7 +31,7 @@ Tip & sintax command used in Unix and Windows
 * grant access project to a user
 * oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
 
-<href name="deploy-existing-image" />
+<a name="deploy-existing-image" />
 
 ### Deploy a existing image
 * oc policy add-role-to-user view system:serviceaccount:myproject:default: add view access to default service account on a project
@@ -48,7 +48,7 @@ Tip & sintax command used in Unix and Windows
 * oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
 * oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
 
-<href name="s2i" />
+<a name="s2i" />
 
 ### S2I - Source to Image
 Creates a images from a source.
@@ -57,7 +57,7 @@ Creates a images from a source.
 <br/> url - define the source code to be built
 <br/> name - define the label of the application
 
-<href name="odo" />
+<a name="odo" />
 
 ### Odo
 Abstracts the kubernetes and Openshift concepts so that developer focus on code.
@@ -100,7 +100,7 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 * automatic push to any changes on a project
 <br/> odo watch &
 
-<href name="git" />
+<a name="git" />
 
 ## Git
 
