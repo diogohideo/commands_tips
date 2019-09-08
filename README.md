@@ -12,6 +12,7 @@ Tip & sintax command used in Unix and Windows
 * login
   * oc login
   * oc login --username developer --password developer
+  * switch back to signed in user - oc login --username developer
   * oc login --token=xxxxxxxxxxxxxxxxxxxxxx --server=https://xxxx.openshift.com
   * API - curl -H "Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxx" "https://xxxx.openshift.com/oapi/v1/users/~"
   
@@ -25,8 +26,8 @@ Tip & sintax command used in Unix and Windows
   * oc get projects
 
 * create a new project
-  * oc new-project <name>
+  * oc new-project \<name>
  
 * grant access project to a user
-  * oc adm policy add-role-to-user <admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> <user> -n <project-name>
+  * oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
 
