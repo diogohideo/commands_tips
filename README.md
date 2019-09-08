@@ -13,7 +13,7 @@ Tip & sintax command used in Unix and Windows
   * oc login
   * oc login --username developer --password developer
   * switch back to signed in user - oc login --username developer
-  * oc login --token=xxxxxxxxxxxxxxxxxxxxxx --server=https://xxxx.openshift.com
+  * specify a cluster - oc login --token=xxxxxxxxxxxxxxxxxxxxxx --server=https://xxxx.openshift.com
   * API - curl -H "Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxx" "https://xxxx.openshift.com/oapi/v1/users/~"
   
 * get oc user id
