@@ -33,14 +33,51 @@ Tip & sintax command used in Unix and Windows
 
 ### Odo
 Abstracts the kubernetes and Openshift concepts so that developer focus on code.
-
+* login
+<br/> odo login -u developer -p developer
+* create project 
+<br/> odo project create myproject
+* grant access to application service
+<br/> oc policy add-role-to-user view system:serviceaccount:myproject:default
+* list catalog components
+<br/> odo catalog list components
+* First build the components: backend and frontend (for this example)
+  * backend
+    * build
+      <br/> mvn package
+    * create yaml config
+      <br/> odo create java backend --binary target/wildwest-1.0.jar
+    * view config
+      <br/> odo config view
+    * push the binary into Openshift
+      <br/> odo push
+    * check if application is running
+      <br/> odo log -f
+  * frontend    
+    * create yaml config
+      <br/> odo create nodejs frontend
+    * view config
+      <br/> odo config view
+    * push the binary into Openshift
+      <br/> odo push
+    * check if application is running
+      <br/> odo log -f
+* link the components - backend x frontend
+<br/> odo link backend --component frontend --port 8080
+* expose component to public
+  * create route to frontend
+    <br/> odo url create frontend --port 8080
+  * push the url exposure
+    <br> odo push
+* automatic push to any changes on a project
+<br/> odo watch &
 
 <href name="git" />
 
 ## Git
 
-Problema: fatal: unable to access 'https://corp-git.ccorp.local/gcsc/pipeline/': SSL certificate problem: self signed certificate 
-Workaround: git config --global http.sslVerify false 
+- Problema: fatal: unable to access 'https://corp-git.ccorp.local/gcsc/pipeline/': SSL certificate problem: self signed certificate 
+<br/>Workaround: git config --global http.sslVerify false 
 
  
 - Editar configurações globais: 
