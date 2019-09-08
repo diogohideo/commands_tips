@@ -2,7 +2,7 @@
 Tip for commands used in Unix and Windows
 
 # Table of Contents
-1. [Openshift] (#openshift)
+[Openshift](#openshift)
 
 <a name="openshift" />
 ## Openshift
