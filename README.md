@@ -3,6 +3,8 @@ Tip & sintax command used in Unix and Windows
 
 # Table of Contents
 1. [Openshift](#openshift)
+   1. [Deploy a existing image](#deploy-existing-image)
+   1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
 1. [Git](#git)
 
@@ -28,6 +30,10 @@ Tip & sintax command used in Unix and Windows
 * oc adm policy add-role-to-user admin \<username> -n \<project>: Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
 * grant access project to a user
 * oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+
+<href name="deploy-existing-image" />
+
+### Deploy a existing image
 * oc policy add-role-to-user view system:serviceaccount:myproject:default: add view access to default service account on a project
 * oc get all -o name: list all resources has been created to the project
 * oc get all --selector app=\<label-value> -o name: shows all resources assigned to a label created during route creation
@@ -41,6 +47,15 @@ Tip & sintax command used in Unix and Windows
 * oc new-project \<proj-name>
 * oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
 * oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
+
+<href name="s2i" />
+
+### S2I - Source to Image
+Creates a images from a source.
+* oc new-app python:latest~https://github.com/openshift-katacoda/blog-django-py --name blog
+<br/> python:latest - specify the language and version
+<br/> url - define the source code to be built
+<br/> name - define the label of the application
 
 <href name="odo" />
 
