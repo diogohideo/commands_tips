@@ -56,6 +56,14 @@ Creates a images from a source.
 <br/> python:latest - specify the language and version
 <br/> url - define the source code to be built
 <br/> name - define the label of the application
+* oc logs bc/blog -f: show the building progress log
+* oc expose service/blog: expose the specified resource
+* oc get route/blog: use this command to get the route url
+* oc start-build blog: triggers a build to the related application (blog)
+* oc start-build blog --from-dir=. --wait: triggers a build using local code
+* oc get builds --watch: show all builds
+* oc describe bc/blog: show build configuration info
+* 
 
 <a name="odo" />
 
