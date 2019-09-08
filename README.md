@@ -3,7 +3,6 @@ Tip & sintax command used in Unix and Windows
 
 # Table of Contents
 1. [Openshift](#openshift)
-1. [Openshift](#openshift)
 
 
 <a name="openshift" />
@@ -25,4 +24,9 @@ Tip & sintax command used in Unix and Windows
 * show project that can be accessed
   * oc get projects
 
+* create a new project
+  * oc new-project <name>
+ 
+* grant access project to a user
+  * oc adm policy add-role-to-user <admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> <user> -n <project-name>
 
