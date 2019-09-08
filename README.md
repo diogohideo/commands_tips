@@ -1,10 +1,11 @@
 # commands_tips
-Tip for commands used in Unix and Windows
+Tip & sintax command used in Unix and Windows
 
 # Table of Contents
 [Openshift](#openshift)
 
 <a name="openshift" />
+
 ## Openshift
 
 * login
