@@ -52,8 +52,9 @@ Tip & sintax command used in Unix and Windows
 
 ### S2I - Source to Image
 Creates a images from a source.
-* oc new-app python:latest~https://github.com/openshift-katacoda/blog-django-py --name blog
-<br/> python:latest - specify the language and version
+* oc new-app <image:tag>~<source-code> --name <name>: Deploy an application from source code hosted on a Git repository using the specified S2I builder image.
+ex: oc new-app python:latest~https://github.com/openshift-katacoda/blog-django-py --name blog
+<br/> python:latest - specify the language and tag
 <br/> url - define the source code to be built
 <br/> name - define the label of the application
 * oc logs bc/blog -f: show the building progress log
@@ -61,9 +62,11 @@ Creates a images from a source.
 * oc get route/blog: use this command to get the route url
 * oc start-build blog: triggers a build to the related application (blog)
 * oc start-build blog --from-dir=. --wait: triggers a build using local code
-* oc get builds --watch: show all builds
 * oc describe bc/blog: show build configuration info
-* 
+* oc cancel-build <build>: Cancel a running build.
+* oc get builds: Display a list of all builds, completed, cancelled and running.
+* oc get builds --watch: Monitor the progress of any active builds.
+* oc get pods --watch: Monitor any activity related to pods in the project. This will include pods run to handle building and deployment of an application.
 
 <a name="odo" />
 
