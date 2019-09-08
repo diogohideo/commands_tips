@@ -27,6 +27,7 @@ Tip & sintax command used in Unix and Windows
 * oc adm policy add-role-to-user admin \<username> -n \<project>: Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
 * grant access project to a user
 * oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+* oc policy add-role-to-user view system:serviceaccount:myproject:default: add view access to default service account on a project
 
 <href name="odo" />
 
