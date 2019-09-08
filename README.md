@@ -4,12 +4,12 @@ Tip for commands used in Unix and Windows
 ## Openshift
 
 * login
-** oc login
+  * oc login
 
 * get oc user id
-** oc whoami
+  * oc whoami
 
 * get oc server url
-** oc whoami --show-server
+  * oc whoami --show-server
 
 
