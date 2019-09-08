@@ -39,24 +39,25 @@ Problema: fatal: unable to access 'https://corp-git.ccorp.local/gcsc/pipeline/':
 Workaround: git config --global http.sslVerify false 
 
  
-Editar configurações globais: 
-git config --global -e 
+- Editar configurações globais: 
+<br/> git config --global -e 
 
-Armazenar as credentials globalmente: 
-git config --global credential.helper store 
+- Armazenar as credentials globalmente: 
+<br/> git config --global credential.helper store 
 
-Processo de commit: 
-git add . 
-git commit -m "Commit inicial com aplicação com hello world" 
-git push -u origin develop 
-git remote –v – equivalente ao svn info (determina a url de origem do repositorio) 
+- Processo de commit: 
+<br/> git add . 
+<br/> git commit -m "Commit inicial com aplicação com hello world" 
+<br/> git push -u origin develop 
+<br/> git remote –v – equivalente ao svn info (determina a url de origem do repositorio) 
 
 - rename de pastas / arquivos envolve add e rm 
-git add . - inclui o diretório renomeado 
-git rm . - remove os arquivos que não existem mais no diretorio do projeto 
+<br/> git add . - inclui o diretório renomeado 
+<br/> git rm . - remove os arquivos que não existem mais no diretorio do projeto 
 
-- comando para commit 
-git fetch; git pull; git add .; git commit -m 'Updated Pipeline'; git push -u origin featureopenshift; git fetch; git pull;java -jar jenkins-cli.jar -s http://10.82.100.13:8080/ -auth @../jenkins_secret.pass build CAN_can-orchestratorV2/develop/ -s –v 
+- comando completo para commit 
+<br/> git fetch; git pull; git add .; git commit -m 'Updated Pipeline'; git push -u origin featureopenshift; git fetch; git pull;java -jar jenkins-cli.jar -s http://10.82.100.13:8080/ -auth @../jenkins_secret.pass build CAN_can-orchestratorV2/develop/ -s –v 
+<br/> Nota: para usar o jenkins-cli, baixar [aqui](https://jenkins.io/doc/book/managing/cli/)
 
 - comando para executar bash dentro do docker 
 docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 primeiros digitos) 
