@@ -15,6 +15,7 @@ Tip & sintax command used in Unix and Windows
 * oc login --username \<user>: Log in to your OpenShift cluster as a specific user.<br>
 * oc login --username \<username> --password \<password>: Log in to your OpenShift cluster as a specific user and supply the password on the command line. Note that this is not recommended for real systems as your password may be logged or retained in command history.<br>
 * oc login --token \<token>: Log in to your server using a token for an existing session.<br>
+* oc login -u \<user> -p \<pass>
 * oc logout: Log out of the active session by clearing the session token.<br>
 * oc whoami: Show the name of the user for the current login session.<br>
 * oc whoami --token: Show the token for the current login session.<br>
@@ -35,6 +36,11 @@ Tip & sintax command used in Unix and Windows
 * oc new-app openshiftkatacoda/blog-django-py: deploy a image
 * oc expose service/blog-django-py - expose the deployed image to public
 * oc get route/blog-django-py - get the external route
+* oc get imagestream -o name - list all image pulled into openshift
+* oc describe imagestream/blog-django-py - show complete information of pulled image
+* oc new-project \<proj-name>
+* oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
+* oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
 
 <href name="odo" />
 
