@@ -28,6 +28,13 @@ Tip & sintax command used in Unix and Windows
 * grant access project to a user
 * oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
 * oc policy add-role-to-user view system:serviceaccount:myproject:default: add view access to default service account on a project
+* oc get all -o name: list all resources has been created to the project
+* oc get all --selector app=\<label-value> -o name: shows all resources assigned to a label created during route creation
+* oc delete all --sector app=\<label-value>: delete all resource related to specified label
+* oc new-app --search openshiftkatacoda/blog-django-py - checks if a image is valid
+* oc new-app openshiftkatacoda/blog-django-py: deploy a image
+* oc expose service/blog-django-py - expose the deployed image to public
+* oc get route/blog-django-py - get the external route
 
 <href name="odo" />
 
