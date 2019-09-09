@@ -52,8 +52,8 @@ Tip & sintax command used in Unix and Windows
 
 ### S2I - Source to Image
 Creates a images from a source.
-* oc new-app <image:tag>~<source-code> --name <name>: Deploy an application from source code hosted on a Git repository using the specified S2I builder image.
-ex: oc new-app python:latest~https://github.com/openshift-katacoda/blog-django-py --name blog
+* oc new-app <image:tag>~<source-code> \--name <name>: Deploy an application from source code hosted on a Git repository using the specified S2I builder image.
+<br/> ex: oc new-app python:latest~https://github.com/openshift-katacoda/blog-django-py --name blog
 <br/> python:latest - specify the language and tag
 <br/> url - define the source code to be built
 <br/> name - define the label of the application
