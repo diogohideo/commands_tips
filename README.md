@@ -1,5 +1,5 @@
 # commands_tips
-Tip & sintax command used in Unix and Windows
+Tip & sintax command used in Unix and Windows to several platforms.
 
 # Table of Contents
 1. [Openshift](#openshift)
@@ -7,6 +7,7 @@ Tip & sintax command used in Unix and Windows
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
 1. [Git](#git)
+1. [Unix Commands](#unix)
 
 <a name="openshift" />
 
@@ -115,6 +116,8 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 
 ## Git
 
+Show most used commands on Git.
+
 - Problema: fatal: unable to access 'https://corp-git.ccorp.local/gcsc/pipeline/': SSL certificate problem: self signed certificate 
 <br/>Workaround: git config --global http.sslVerify false 
 
@@ -141,3 +144,10 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 
 - comando para executar bash dentro do docker 
 docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 primeiros digitos) 
+
+<a name="unix" />
+
+### Unix Commands
+
+Show main used commands on unix and shell.
+- net user /domain <user_login>
