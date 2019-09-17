@@ -6,6 +6,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
    1. [Deploy a existing image](#deploy-existing-image)
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
+1. [Docker](#docker)
 1. [Git](#git)
 1. [Unix Commands](#unix)
 
@@ -112,6 +113,16 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 * automatic push to any changes on a project
 <br/> odo watch &
 
+<a name="docker" />
+
+## Docker
+
+Show docker commands and config details.
+* systemctl daemon-reload - daemon aplica as alterações realizados no /etc/sysconfig/docker
+* systemctl restart docker - restart docker reinializa o serviço
+* docker restart $(docker ps -q)- como o restart do systemctl altera o pid do processo pai bem como os descritores de rede, necessita do restart
+
+
 <a name="git" />
 
 ## Git
@@ -151,3 +162,4 @@ docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 prim
 
 Show main used commands on unix and shell.
 - net user /domain <user_login>
+
