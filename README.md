@@ -17,7 +17,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
 
 Useful commands to troubleshoot on Jenkins and other tips.
 
-* Show the output comand:
+* Show the output comand on http://<jenkins_url>/script:
 ```groovy
 def sout = new StringBuilder(), serr = new StringBuilder()
 def proc = 'ls /badDir'.execute()
