@@ -18,7 +18,6 @@ Tip & sintax command used in Unix and Windows to several platforms.
 Useful commands to troubleshoot on Jenkins and other tips.
 
 * Show the output comand:
- <br/>
 def sout = new StringBuilder(), serr = new StringBuilder() <br/>
 def proc = 'ls /badDir'.execute() <br/>
 proc.consumeProcessOutput(sout, serr) <br/>
