@@ -2,6 +2,7 @@
 Tip & sintax command used in Unix and Windows to several platforms.
 
 # Table of Contents
+1. [Jenkins](#jenkins)
 1. [Openshift](#openshift)
    1. [Deploy a existing image](#deploy-existing-image)
    1. [S2I - Source to Image](#s2i)
@@ -9,6 +10,20 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Docker](#docker)
 1. [Git](#git)
 1. [Unix Commands](#unix)
+
+<a name="jenkins" />
+
+## Jenkins
+
+Useful commands to troubleshoot on Jenkins and other tips.
+
+* Show the output comand:
+
+def sout = new StringBuilder(), serr = new StringBuilder()
+def proc = 'ls /badDir'.execute()
+proc.consumeProcessOutput(sout, serr)
+proc.waitForOrKill(1000)
+println "out> $sout err> $serr"
 
 <a name="openshift" />
 
