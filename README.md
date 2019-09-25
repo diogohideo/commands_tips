@@ -18,11 +18,13 @@ Tip & sintax command used in Unix and Windows to several platforms.
 Useful commands to troubleshoot on Jenkins and other tips.
 
 * Show the output comand:
-def sout = new StringBuilder(), serr = new StringBuilder() <br/>
-def proc = 'ls /badDir'.execute() <br/>
-proc.consumeProcessOutput(sout, serr) <br/>
-proc.waitForOrKill(1000) <br/>
-println "out> $sout err> $serr" <br/>
+```groovy
+def sout = new StringBuilder(), serr = new StringBuilder()
+def proc = 'ls /badDir'.execute()
+proc.consumeProcessOutput(sout, serr)
+proc.waitForOrKill(1000)
+println "out> $sout err> $serr"
+```
 
 <a name="openshift" />
 
