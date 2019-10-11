@@ -178,4 +178,7 @@ docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 prim
 
 Show main used commands on unix and shell.
 - net user /domain <user_login>
-
+- Test network conectivity:
+<br/> telnet <ip> <port>
+<br/> nmap <ip> -p <port>
+<br/> see also: netcat
