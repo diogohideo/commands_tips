@@ -182,3 +182,6 @@ Show main used commands on unix and shell.
 <br/> telnet \<ip\> \<port\>
 <br/> nmap \<ip\> -p \<port\>
 <br/> see also: netcat
+- create fs (file system): sudo mke2fs /dev/sdf
+- mount and map the fs on unix: sudo mount /dev/sdf /mnt
+- unmap the fs: sudo unmount /mnt
