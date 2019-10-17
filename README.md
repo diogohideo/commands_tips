@@ -183,5 +183,6 @@ Show main used commands on unix and shell.
 <br/> nmap \<ip\> -p \<port\>
 <br/> see also: netcat
 - create fs (file system): sudo mke2fs /dev/sdf
+- to check the device to format the fs or mount: ls /dev -ltr
 - mount and map the fs on unix: sudo mount /dev/sdf /mnt
-- unmap the fs: sudo unmount /mnt
+- unmap the fs: sudo umount /mnt
