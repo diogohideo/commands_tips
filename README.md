@@ -5,6 +5,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Jenkins](#jenkins)
 1. [Openshift](#openshift)
    1. [Deploy a existing image](#deploy-existing-image)
+   1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
 1. [Docker](#docker)
@@ -47,7 +48,7 @@ println "out> $sout err> $serr"
 * oc adm policy add-role-to-user view \<username> -n \<project>: Add another user to a project but such that they can only view what is in the project.<br>
 * oc adm policy add-role-to-user admin \<username> -n \<project>: Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
 * grant access project to a user
-* oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+<br/>oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
 
 <a name="deploy-existing-image" />
 
@@ -65,6 +66,18 @@ println "out> $sout err> $serr"
 * oc new-project \<proj-name>
 * oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
 * oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
+
+<a name="metrics" />
+
+### Metrics
+The metrics settings are all deployed on openshift-infra (pods, secrets, config maps, etc). To login, it is required to use system:admin. The password is not required, but is necessary to have certificate instead.
+* oc login -u system:admin
+* list the pods running the metrics components:
+<br/>oc get pods -n openshift-infra
+* list all the routes of Hawkular metrics:
+<br/>oc get all -n openshift-infra
+* change the paramters min/max replicas and cpu-percent:
+<br/> oc autoscale dc/guestbook --min 1 --max 3 --cpu-percent=20
 
 <a name="s2i" />
 
