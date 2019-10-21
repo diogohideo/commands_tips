@@ -49,6 +49,8 @@ println "out> $sout err> $serr"
 * oc adm policy add-role-to-user admin \<username> -n \<project>: Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
 * grant access project to a user
 <br/>oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+* to a deployed app guestbook, how to attach the config map "default" using comandline:
+<br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"volumes":[{"name":"config","configMap":{"name":"default"}}]}}}}'
 
 <a name="deploy-existing-image" />
 
@@ -76,10 +78,13 @@ The metrics settings are all deployed on openshift-infra (pods, secrets, config 
 <br/>oc get pods -n openshift-infra
 * list all the routes of Hawkular metrics:
 <br/>oc get all -n openshift-infra
-* change the paramters min/max replicas and cpu-percent:
+#### Setting Horizontal Pod Autoscaler (HPA)
+For this section, let's use guestbook application as example:
+* set HPA to trigger autoscaling when cpu usage hits 20% of usage:
 <br/> oc autoscale dc/guestbook --min 1 --max 3 --cpu-percent=20
 * limit cpu to 80 mili cores
 <br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"containers":[{"name":"guestbook","resources":{"limits":{"cpu":"80m"}}}]}}}}'
+
 
 <a name="s2i" />
 
