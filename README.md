@@ -78,6 +78,8 @@ The metrics settings are all deployed on openshift-infra (pods, secrets, config 
 <br/>oc get all -n openshift-infra
 * change the paramters min/max replicas and cpu-percent:
 <br/> oc autoscale dc/guestbook --min 1 --max 3 --cpu-percent=20
+* limit cpu to 80 mili cores
+<br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"containers":[{"name":"guestbook","resources":{"limits":{"cpu":"80m"}}}]}}}}'
 
 <a name="s2i" />
 
