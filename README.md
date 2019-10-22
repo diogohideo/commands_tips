@@ -66,6 +66,7 @@ println "out> $sout err> $serr"
 * oc get imagestream -o name - list all image pulled into openshift
 * oc describe imagestream/blog-django-py - show complete information of pulled image
 * oc new-project \<proj-name>
+* oc delete project \<proj-name>
 * oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
 * oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
 
