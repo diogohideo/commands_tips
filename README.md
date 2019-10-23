@@ -80,7 +80,7 @@ Commands to setup roles.
 * list all commands:
 <br/>oc policy -h
 * assign edit / view to a role
-<br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
+<br/>oc policy add-role-to-group edit <role> -n <project/namespace>
 
 <a name="metrics" />
 
