@@ -5,6 +5,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Jenkins](#jenkins)
 1. [Openshift](#openshift)
    1. [Deploy a existing image](#deploy-existing-image)
+   1. [Setup Roles](#roles)
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
@@ -69,6 +70,17 @@ println "out> $sout err> $serr"
 * oc delete project \<proj-name>
 * oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
 * oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
+
+<a name="roles" />
+
+### Setup Roles
+Commands to setup roles.
+* list all roles:
+<br/>oc get groups
+* list all commands:
+<br/>oc policy -h
+* assign edit / view to a role
+<br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
 
 <a name="metrics" />
 
