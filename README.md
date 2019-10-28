@@ -12,10 +12,12 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Docker](#docker)
 1. [Git](#git)
 1. [Unix Commands](#unix)
+1. [Utilities](#utilities)
+   1. [Exporting CA Certificates](#certificates)
 
 <a name="jenkins" />
 
-## Jenkins
+# Jenkins
 
 Useful commands to troubleshoot on Jenkins and other tips.
 
@@ -30,7 +32,7 @@ println "out> $sout err> $serr"
 
 <a name="openshift" />
 
-## Openshift
+# Openshift
 
 * oc login: Log in to your OpenShift cluster and save the session token for subsequent use. You will be prompted for the user name and password or directed to a web console page where you can obtain a token you must then use to use to login from the command line. The web page will require you to first login in to the web console if you are not already logged in.<br>
 * oc login \<server>: Log in to a specific OpenShift cluster. You will need to specify the name of the server as argument the first time you are using it, or if switching back to it after having used a different cluster.<br>
@@ -55,7 +57,7 @@ println "out> $sout err> $serr"
 
 <a name="deploy-existing-image" />
 
-### Deploy a existing image
+## Deploy a existing image
 * oc policy add-role-to-user view system:serviceaccount:myproject:default: add view access to default service account on a project
 * oc get all -o name: list all resources has been created to the project
 * oc get all --selector app=\<label-value> -o name: shows all resources assigned to a label created during route creation
@@ -73,7 +75,7 @@ println "out> $sout err> $serr"
 
 <a name="roles" />
 
-### Setup Roles
+## Setup Roles
 Commands to setup roles.
 * list all roles:
 <br/>oc get groups
@@ -84,7 +86,7 @@ Commands to setup roles.
 
 <a name="metrics" />
 
-### Metrics
+## Metrics
 The metrics settings are all deployed on openshift-infra (pods, secrets, config maps, etc). To login, it is required to use system:admin. The password is not required, but is necessary to have certificate instead.
 * oc login -u system:admin
 * list the pods running the metrics components:
@@ -101,7 +103,7 @@ For this section, let's use guestbook application as example:
 
 <a name="s2i" />
 
-### S2I - Source to Image
+## S2I - Source to Image
 Creates a images from a source.
 * oc new-app <image:tag>~<source-code> \--name <name>: Deploy an application from source code hosted on a Git repository using the specified S2I builder image.
 <br/> ex: oc new-app python:latest~https://github.com/openshift-katacoda/blog-django-py --name blog
@@ -121,7 +123,7 @@ Creates a images from a source.
 
 <a name="odo" />
 
-### Odo
+## Odo
 Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 * login
 <br/> odo login -u developer -p developer
@@ -164,7 +166,7 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 
 <a name="docker" />
 
-## Docker
+# Docker
 
 Show docker commands and config details.
 * systemctl daemon-reload - daemon aplica as alterações realizados no /etc/sysconfig/docker
@@ -174,7 +176,7 @@ Show docker commands and config details.
 
 <a name="git" />
 
-## Git
+# Git
 
 Show most used commands on Git.
 
@@ -207,7 +209,7 @@ docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 prim
 
 <a name="unix" />
 
-### Unix Commands
+# Unix Commands
 
 Show main used commands on unix and shell.
 - net user /domain <user_login>
@@ -219,3 +221,13 @@ Show main used commands on unix and shell.
 - to check the device to format the fs or mount: ls /dev -ltr
 - mount and map the fs on unix: sudo mount /dev/sdf /mnt
 - unmap the fs: sudo umount /mnt
+
+<a name="utilities" />
+
+# Utilities
+
+<a name="certificates" />
+
+## Exporting CA Certificates
+
+Some platforms needs certification authority to connect to other services. In my case, to connect Openshift CLI plugin from Jenkins to Openshift, it was necessary to export certificates from the site. It was a little trick, since it is necessary to be clear which format of certificate is necessary to be exported.
