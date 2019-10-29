@@ -54,6 +54,7 @@ println "out> $sout err> $serr"
 <br/>oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
 * to a deployed app guestbook, how to attach the config map "default" using comandline:
 <br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"volumes":[{"name":"config","configMap":{"name":"default"}}]}}}}'
+* oc get nodes - check node availability
 
 <a name="deploy-existing-image" />
 
