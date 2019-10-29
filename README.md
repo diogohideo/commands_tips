@@ -9,6 +9,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
+   1. [Troubleshooting](#troubleshooting)
 1. [Docker](#docker)
 1. [Git](#git)
 1. [Unix Commands](#unix)
@@ -164,6 +165,14 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
     <br> odo push
 * automatic push to any changes on a project
 <br/> odo watch &
+
+<a name="troubleshooting" />
+
+## Troubleshooting
+Solutions to problems faced on Openshift:
+* authentication error occurred on LDAP authentication - if the problem is not related to wrong typing credential issue, you may be facing a problem of identity.
+<br/>oc delete identity LDAP:cn=xxxxxx,ou=yyyyyyyy,ou=wwwwwwww,o=ORGANIZATIONZ
+<br/>Get the identity parameter using oc get identity. Locate te user line info and get the data from the first column and paste on the command above.
 
 <a name="docker" />
 
