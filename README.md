@@ -172,7 +172,7 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 Show docker commands and config details.
 * systemctl daemon-reload - daemon aplica as alterações realizados no /etc/sysconfig/docker
 * systemctl restart docker - restart docker reinializa o serviço
-* docker restart $(docker ps -q)- como o restart do systemctl altera o pid do processo pai bem como os descritores de rede, necessita do restart
+* docker restart $(docker ps -q) - como o restart do systemctl altera o pid do processo pai bem como os descritores de rede, necessita do restart
 
 
 <a name="git" />
