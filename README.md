@@ -172,9 +172,7 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 Solutions to problems faced on Openshift:
 * authentication error occurred on LDAP authentication - if the problem is not related to wrong typing credential issue, you may be facing a problem of identity.
 <br/>
-```
 oc delete identity LDAP:cn=xxxxxx,ou=yyyyyyyy,ou=wwwwwwww,o=ORGANIZATIONZ
-```
 <br/>
 <br/>Get the identity parameter using oc get identity. Locate te user line info and get the data from the first column and paste on the command above.
 
