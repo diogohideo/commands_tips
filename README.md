@@ -54,6 +54,8 @@ println "out> $sout err> $serr"
 * oc adm policy add-role-to-user admin \<username> -n \<project>: Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
 * grant access project to a user
 <br/>oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+* grant access project to a group (example):
+<br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
 * to a deployed app guestbook, how to attach the config map "default" using comandline:
 <br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"volumes":[{"name":"config","configMap":{"name":"default"}}]}}}}'
 * oc get nodes - check node availability
