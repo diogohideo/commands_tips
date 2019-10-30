@@ -211,14 +211,23 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 <a name="login_error_ldap" />
 
 ### Login Error using LDAP
-Authentication error occurred on LDAP authentication: if the problem is not related to wrong typing credential issue, you may be facing a problem of identity. Follow the steps
-* Get the identity parameter using oc get identity. Locate te user line info and get the data from the first column and paste on the command above
+Authentication error occurred on LDAP authentication: if the problem is not related to wrong typing credential issue or LDAP setting, you may be facing a problem of identity. Follow the steps:
+* Get the users list
 ```
-oc get identity
+oc get users
+
+NAME        UID                                    FULL NAME   IDENTITIES
+John_37    ff3b3e73-eeb2-11e9-8940-005056937315   John_37     LDAP:cn=John_37,ou=Empresas,ou=Parceiros,ou=Usuarios,o=ENTERPRISE
+MTH01      d6cb2447-e534-11e9-877b-0050569374d9   MTH01       LDAP-CORP:cn=MTH01,ou=Empresas,ou=Parceiros,ou=Usuarios,o=ENTERPRISE
+Jessy      b7e80b61-f4d6-11e9-af43-005056937315   Jessy       LDAP:cn=Jessy,ou=Empresas,ou=Parceiros,ou=Usuarios,o=ENTERPRISE
 ```
-* Delete the identity
+* Delete the identity - get the string from the last column (IDENTITIES)
 ```
-oc delete identity LDAP:cn=xxxxxx,ou=yyyyyyyy,ou=wwwwwwww,o=ORGANIZATIONZ
+oc delete identity LDAP:cn=John_37,ou=Empresas,ou=Parceiros,ou=Usuarios,o=ENTERPRISE
+```
+* Delete the user
+```
+oc delete user John_37
 ```
 
 <a name="docker" />
