@@ -12,6 +12,8 @@ Tip & sintax command used in Unix and Windows to several platforms.
    1. [Odo](#odo)
    1. [Troubleshooting](#troubleshooting)
 1. [Docker](#docker)
+   1. [Troubleshooting](#troubleshooting_docker)
+      1. [X509: certificate signed by unknown authority](#certificate_error)
 1. [Git](#git)
 1. [Unix Commands](#unix)
 1. [Utilities](#utilities)
@@ -128,6 +130,7 @@ The metrics settings are all deployed on openshift-infra (pods, secrets, config 
 <br/>oc get pods -n openshift-infra
 * list all the routes of Hawkular metrics:
 <br/>oc get all -n openshift-infra
+
 #### Setting Horizontal Pod Autoscaler (HPA)
 For this section, let's use guestbook application as example:
 * set HPA to trigger autoscaling when cpu usage hits 20% of usage:
@@ -218,6 +221,34 @@ Show docker commands and config details.
 * systemctl restart docker - restart docker reinializa o serviço
 * docker restart $(docker ps -q) - como o restart do systemctl altera o pid do processo pai bem como os descritores de rede, necessita do restart
 
+<a name="troubleshooting_docker" />
+
+## Troubleshooting
+
+<a name="certificate_error" />
+
+### X509: certificate signed by unknown authority
+There some steps that should be acomplished to solve the problem of certificate:
+* Create the registry directory with domain name as presented in the following:
+```
+mkdir /etc/docker/certs.d/domain.name:port
+```
+<br/>example:
+```
+mkdir /etc/docker/certs.d/registry-docker.apps:443
+```
+* Create the files with the following structure:
+```
+/etc/docker/certs.d/registry-docker.apps:443
+|- nome.do.dominio.cer
+|- ca.cer
+|- registry-docker.apps.key
+```
+* Restart the docker service
+```
+service docker restart
+docker restart $(docker ps -q) 
+```
 
 <a name="git" />
 
