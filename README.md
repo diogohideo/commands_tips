@@ -250,6 +250,7 @@ mkdir /etc/docker/certs.d/registry-docker.apps:443
 service docker restart
 docker restart $(docker ps -q) 
 ```
+<br/>
 
 <a name="dial_tcp" />
 
