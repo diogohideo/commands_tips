@@ -241,7 +241,7 @@ mkdir /etc/docker/certs.d/registry-docker.apps:443
 * Create the files with the following structure:
 ```
 /etc/docker/certs.d/registry-docker.apps:443
-|- nome.do.dominio.cer
+|- registry-docker.apps.cer
 |- ca.cer
 |- registry-docker.apps.key
 ```
