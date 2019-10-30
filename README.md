@@ -95,12 +95,7 @@ Commands to setup roles.
 ### Safe guard is red status - Gateway timeout on Kibana
 First of all, access on console online the project openshift-logging on Openshift. On the overview, access the resource logging-kibana and access the external route to check if the service is available.
 If the message "Gateway timeout is prompted out", follow the steps:
-* Get the pod name of logging data master with hash on the left
-<br/>Access the project using "oc project openshift-logging" and check the pod status as following:
-<br/>Windows
-<br/>oc get pods | findstr logging-es-data-master
-<br/>
-<br/>Linux
+* Get the pod name of logging data master with hash on the left:
 <br/>oc get pods | grep logging-es-data-master
 * Check index status:
 <br/>oc exec \<logging-es-data-master-hash-of-pod> -- curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -HContent-Type:application/json  https://localhost:9200/_cat/indices?v 
