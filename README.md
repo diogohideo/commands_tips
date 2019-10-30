@@ -289,6 +289,12 @@ Set the following parameters:
 * ADD_REGISTRY - add a line for each registry domain;
 * If the domain has a insecure URL, then add the domain to INSECURE_REGISTRY like other itens;
 * If your organization has proxy, add the complete domain or partial as the example. Wildcard is not needed.
+* Restart the docker service
+```
+systemctl daemon-reload
+service docker restart
+docker restart $(docker ps -q) 
+```
 
 <a name="git" />
 
