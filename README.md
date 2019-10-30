@@ -14,6 +14,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
+      1.[dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](dial_tcp)
 1. [Git](#git)
 1. [Unix Commands](#unix)
 1. [Utilities](#utilities)
@@ -249,6 +250,45 @@ mkdir /etc/docker/certs.d/registry-docker.apps:443
 service docker restart
 docker restart $(docker ps -q) 
 ```
+
+<a name="dial_tcp" />
+
+### dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host
+The key file configuration to solve this problem is /etc/sysconfig/docker. The file should look like this:
+```shell
+# /etc/sysconfig/docker
+
+# Modify these options if you want to change the way the docker daemon runs
+OPTIONS='--selinux-enabled  --log-driver=journald -g /app/docker --signature-verification=false --log-level=info --disable-legacy-registry --userland-proxy=false'
+
+if [ -z "${DOCKER_CERT_PATH}" ]; then
+    DOCKER_CERT_PATH=/etc/docker
+fi
+
+# Do not add registries in this file anymore. Use /etc/containers/registries.conf
+# instead. For more information reference the registries.conf(5) man page.
+
+# Location used for temporary files, such as those created by
+# docker load and build operations. Default is /var/lib/docker/tmp
+# Can be overriden by setting the following environment variable.
+# DOCKER_TMPDIR=/var/tmp
+
+# Controls the /etc/cron.daily/docker-logrotate cron job status.
+# To disable, uncomment the line below.
+# LOGROTATE=false
+ADD_REGISTRY='--add-registry docker.io'
+ADD_REGISTRY='--add-registry docker-registry.apps'
+
+INSECURE_REGISTRY='--insecure-registry docker.io --insecure-registry docker-registry.dev.apps'
+
+HTTP_PROXY="http://user:password@proxycielo.visanet.corp:8080"
+HTTPS_PROXY="http://user:password@proxycielo.visanet.corp:8080"
+NO_PROXY="docker.io,.dev.apps"
+```
+Set the following parameters:
+* ADD_REGISTRY - add a line for each registry domain;
+* If the domain has a insecure URL, then add the domain to INSECURE_REGISTRY like other itens;
+* If your organization has proxy, add the complete domain or partial as the example. Wildcard is not needed.
 
 <a name="git" />
 
