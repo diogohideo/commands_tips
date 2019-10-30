@@ -11,6 +11,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
    1. [Troubleshooting](#troubleshooting)
+         1. [Login Error using LDAP](#login_error_ldap)
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
@@ -206,12 +207,19 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 <a name="troubleshooting" />
 
 ## Troubleshooting
-Solutions to problems faced on Openshift:
-* authentication error occurred on LDAP authentication - if the problem is not related to wrong typing credential issue, you may be facing a problem of identity.
-<br/>
+
+<a name="login_error_ldap" />
+
+### Login Error using LDAP
+Authentication error occurred on LDAP authentication: if the problem is not related to wrong typing credential issue, you may be facing a problem of identity. Follow the steps
+* Get the identity parameter using oc get identity. Locate te user line info and get the data from the first column and paste on the command above
+```
+oc get identity
+```
+* Delete the identity
+```
 oc delete identity LDAP:cn=xxxxxx,ou=yyyyyyyy,ou=wwwwwwww,o=ORGANIZATIONZ
-<br/>
-<br/>Get the identity parameter using oc get identity. Locate te user line info and get the data from the first column and paste on the command above.
+```
 
 <a name="docker" />
 
