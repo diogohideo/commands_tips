@@ -115,7 +115,7 @@ green  open   .operations.2019.10.26                                            
 health status index
 green  open   .kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57                    NjVWuumISCO_a8sXprkPaA   1   0          4            0     46.9kb         46.9kb
 
-oc exec \<logging-es-data-master-hash-of-pod> --  curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -XDELETE 'https://localhost:9200/.kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57'
+oc exec <logging-es-data-master-hash-of-pod> --  curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -XDELETE 'https://localhost:9200/.kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57'
 ```
 
 <a name="metrics" />
