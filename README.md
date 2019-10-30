@@ -6,6 +6,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Openshift](#openshift)
    1. [Deploy a existing image](#deploy-existing-image)
    1. [Setup Roles](#roles)
+   1. [Kibana - Troubleshooting](#kibana)
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
@@ -85,6 +86,25 @@ Commands to setup roles.
 <br/>oc policy -h
 * assign edit / view to a role
 <br/>oc policy add-role-to-group edit <role> -n <project/namespace>
+   
+<a name="kibana" />
+
+## Kibana - Troubleshooting
+Useful commands to troubleshoot the problems on Kibana.
+First of all, access on console online the project openshift-logging on Openshift. On the overview, access the resource logging-kibana and access the external route to check if the service is available.
+* Check the service status on terminal
+<br/>Access the project using "oc project openshift-logging" and check the pod status as following:
+<br/>Windows
+<br/>oc get pods | findstr logging-es-data-master
+<br/>
+<br/>Linux
+<br/>oc get pods | grep logging-es-data-master
+* Check index status:
+<br/>oc exec logging-es-data-master-hash-do-pod -- curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -HContent-Type:application/json  https://localhost:9200/_cat/indices?v 
+<br/>Deletar o indice com status RED
+<br/>oc exec logging-es-data-master-hash-do-pod --  curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -XDELETE 'https://localhost:9200/INDICE_COM_STATUS_RED'
+<br/>
+<br/>Se o Indice ".searchguard" estiver com status RED, será necessário fazer o redeploy via interface do elastic-search e do kibana 
 
 <a name="metrics" />
 
