@@ -14,7 +14,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
-      1. [dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](dial_tcp)
+      1. [dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](#dial_tcp)
 1. [Git](#git)
 1. [Unix Commands](#unix)
 1. [Utilities](#utilities)
@@ -250,7 +250,6 @@ mkdir /etc/docker/certs.d/registry-docker.apps:443
 service docker restart
 docker restart $(docker ps -q) 
 ```
-<br/>
 
 <a name="dial_tcp" />
 
