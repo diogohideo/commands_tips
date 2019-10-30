@@ -100,13 +100,15 @@ If the message "Gateway timeout is prompted out", follow the steps:
 * Check index status:
 <br/>oc exec \<logging-es-data-master-hash-of-pod> -- curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -HContent-Type:application/json  https://localhost:9200/_cat/indices?v 
 * Check if the searchguard is RED as the example:
-<br/>health status index
-<br/>green  open   .kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57                    NjVWuumISCO_a8sXprkPaA   1   0          4            0     46.9kb         46.9kb
-<br/>green  open   project.ngc-dev.10e561e1-d354-11e9-a92b-0050569374d9.2019.10.29     vZ6AvXWWTTC83ZMXSCDicQ   1   0        102            0    153.7kb        153.7kb
-<br/>red  open   .searchguard                                                        Y1piRFOMR3iMyl1p1LF-_Q   1   0          5            0     33.1kb         33.1kb
-<br/>green  open   project.fac-dev.c0615391-d353-11e9-a92b-0050569374d9.2019.10.30     0ZiMxg1lT7GDXv2d-PVXgQ   1   0       1805            0      2.1mb          2.1mb
-<br/>green  open   .kibana.2df074c6d9620ca5a1e2d11ffa09997a6c78d4c9                    LDl-Bsx4SBeYID895tjPhA   1   0          1            1     26.4kb         26.4kb
-<br/>green  open   .operations.2019.10.26                                              0uGsaJrlTLmWDhkj_fZF1Q   1   0   24592923            0     15.7gb         15.7gb
+```
+health status index
+green  open   .kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57                    NjVWuumISCO_a8sXprkPaA   1   0          4            0     46.9kb         46.9kb
+green  open   project.ngc-dev.10e561e1-d354-11e9-a92b-0050569374d9.2019.10.29     vZ6AvXWWTTC83ZMXSCDicQ   1   0        102            0    153.7kb        153.7kb
+red  open   .searchguard                                                        Y1piRFOMR3iMyl1p1LF-_Q   1   0          5            0     33.1kb         33.1kb
+green  open   project.fac-dev.c0615391-d353-11e9-a92b-0050569374d9.2019.10.30     0ZiMxg1lT7GDXv2d-PVXgQ   1   0       1805            0      2.1mb          2.1mb
+green  open   .kibana.2df074c6d9620ca5a1e2d11ffa09997a6c78d4c9                    LDl-Bsx4SBeYID895tjPhA   1   0          1            1     26.4kb         26.4kb
+green  open   .operations.2019.10.26                                              0uGsaJrlTLmWDhkj_fZF1Q   1   0   24592923            0     15.7gb         15.7gb
+```
 * If searchguard is red, re-deploy the logging data master. Try to access kibana. If the problem persists, re-deploy loggin-kibana too. This should solve the problem.
 * Otherwise, delete the index with red state:
 <br/>health status index
