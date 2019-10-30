@@ -117,6 +117,7 @@ green  open   .kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57                  
 
 oc exec <logging-es-data-master-hash-of-pod> --  curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -XDELETE 'https://localhost:9200/.kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57'
 ```
+<br/> Note the parameter "https://localhost:9200/.kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57". The index name include also the initial "."
 
 <a name="metrics" />
 
