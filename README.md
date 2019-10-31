@@ -5,7 +5,7 @@ Tip & sintax command used in Unix and Windows to several platforms.
 1. [Jenkins](#jenkins)
 1. [Openshift](#openshift)
    1. [Deploy a existing image](#deploy-existing-image)
-   1. [Setup Roles](#roles)
+   1. [Policies, Access and Roles](#policies)
    1. [Kibana - Troubleshooting](#kibana)
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
@@ -53,16 +53,30 @@ println "out> $sout err> $serr"
 * oc whoami --show-context: Shows the context for the current session. This will include details about the project, server and name of user, in that order.<br>
 * oc config get-clusters: Show a list of all OpenShift clusters ever logged in to.<br>
 * oc config get-contexts: Show a list of contexts for all sessions ever created. For each context listed, this will include details about the project, server and name of user, in that order.<br>
-* oc adm policy add-role-to-user edit \<username> -n \<project>: Add another user to a project so that they can work within the project, including creating new deployments or deleting applications.<br>
-* oc adm policy add-role-to-user view \<username> -n \<project>: Add another user to a project but such that they can only view what is in the project.<br>
-* oc adm policy add-role-to-user admin \<username> -n \<project>: Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
+* to a deployed app guestbook, how to attach the config map "default" using comandline:
+<br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"volumes":[{"name":"config","configMap":{"name":"default"}}]}}}}'
+* oc get nodes - check node availability
+
+<a name="policies" />
+
+## Policies, Access and Roles
+Commands to setup roles.
+* list all roles:
+<br/>oc get groups
+* list all commands:
+<br/>oc policy -h
+* assign edit / view to a role
+<br/>oc policy add-role-to-group edit <role> -n <project/namespace>
+* Add another user to a project so that they can work within the project, including creating new deployments or deleting applications.
+<br/>oc adm policy add-role-to-user edit \<username> -n \<project>
+* Add another user to a project but such that they can only view what is in the project.
+<br/>oc adm policy add-role-to-user view \<username> -n \<project>
+* Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
+<br/>oc adm policy add-role-to-user admin \<username> -n \<project>
 * grant access project to a user
 <br/>oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
 * grant access project to a group (example):
 <br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
-* to a deployed app guestbook, how to attach the config map "default" using comandline:
-<br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"volumes":[{"name":"config","configMap":{"name":"default"}}]}}}}'
-* oc get nodes - check node availability
 
 <a name="deploy-existing-image" />
 
@@ -82,17 +96,6 @@ println "out> $sout err> $serr"
 * oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
 * oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
 
-<a name="roles" />
-
-## Setup Roles
-Commands to setup roles.
-* list all roles:
-<br/>oc get groups
-* list all commands:
-<br/>oc policy -h
-* assign edit / view to a role
-<br/>oc policy add-role-to-group edit <role> -n <project/namespace>
-   
 <a name="kibana" />
 
 ## Kibana - Troubleshooting
