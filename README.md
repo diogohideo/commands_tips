@@ -1,5 +1,5 @@
 # commands_tips
-Tip & sintax command used in Unix and Windows to several platforms.
+Tip & sintax command used in Unix and Windows to several platforms useful to DevOps.
 
 # Table of Contents
 1. [Jenkins](#jenkins)
@@ -17,6 +17,8 @@ Tip & sintax command used in Unix and Windows to several platforms.
       1. [X509: certificate signed by unknown authority](#certificate_error)
       1. [dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](#dial_tcp)
 1. [Git](#git)
+1. [AWS](#aws)
+   1. [Bucket (S3)](#s3)
 1. [Unix Commands](#unix)
 1. [Utilities](#utilities)
    1. [Exporting CA Certificates](#certificates)
@@ -349,6 +351,30 @@ Show most used commands on Git.
 - comando para executar bash dentro do docker 
 docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 primeiros digitos) 
 
+
+# AWS
+
+<a name="s3 />
+
+## Bucket (S3)
+Simple Storage Service used to storage any data with several advantages like resilience, disaster proctection, on demand service and others.
+* Copy data into S3:
+```
+# local to remote
+aws s3 cp data.txt s3://amazing-bucket-dho/data.txt
+# remote to local
+aws s3 cp s3://amazing-bucket-dho/data.txt data.txt 
+```
+   * data.txt - filename
+   * amazing-bucket-dho - the bucket name
+<br/>AWS CLI copy command is bi-directional. A file can be copied from local to remote or remote to local
+* Sync local folder into remote bucket folder:
+```
+aws s3 sync folder-dho s3://amazing-bucket-dho/files
+```
+   * folder-dho - local foleder
+   * s3://amazing-bucket-dho/files - complete remote bucket folder path
+   
 <a name="unix" />
 
 # Unix Commands
