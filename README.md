@@ -351,11 +351,11 @@ Show most used commands on Git.
 - comando para executar bash dentro do docker 
 docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 primeiros digitos) 
 
-<a name="aws />
+<a name="aws" />
 
 # AWS
 
-<a name="s3 />
+<a name="s3" />
 
 ## Bucket (S3)
 
