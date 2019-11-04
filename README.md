@@ -67,8 +67,8 @@ Commands to setup roles.
 <br/>oc get groups
 * list all commands:
 <br/>oc policy -h
-* assign edit / view to a role
-<br/>oc policy add-role-to-group edit <role> -n <project/namespace>
+* assign edit / view to a group
+<br/>oc policy add-role-to-group edit \<group>  -n <project/namespace>
 * Add another user to a project so that they can work within the project, including creating new deployments or deleting applications.
 <br/>oc adm policy add-role-to-user edit \<username> -n \<project>
 * Add another user to a project but such that they can only view what is in the project.
