@@ -57,7 +57,7 @@ println "out> $sout err> $serr"
 * oc config get-clusters: Show a list of all OpenShift clusters ever logged in to.<br>
 * oc config get-contexts: Show a list of contexts for all sessions ever created. For each context listed, this will include details about the project, server and name of user, in that order.<br>
 * to a deployed app guestbook, how to attach the config map "default" using comandline:
-<br/>oc patch dc/guestbook -p '{"spec":{"template":{"spec":{"volumes":[{"name":"config","configMap":{"name":"default"}}]}}}}'
+<br/>oc set env --from=configmap/config-default dc/guest-book: update the environment variable from a config map
 * oc get nodes - check node availability
 
 <a name="policies" />
