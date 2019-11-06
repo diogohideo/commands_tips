@@ -6,12 +6,13 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
 1. [Openshift](#openshift)
    1. [Deploy a existing image](#deploy-existing-image)
    1. [Policies, Access and Roles](#policies)
+   1. [Setup LDAP and other changes on OCP Server](#ocp_setup)
    1. [Kibana - Troubleshooting](#kibana)
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
    1. [Troubleshooting](#troubleshooting)
-         1. [Login Error using LDAP](#login_error_ldap)
+         1. [Login error using LDAP after applying new changes](#login_error_ldap)
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
@@ -79,6 +80,51 @@ Commands to setup roles.
 <br/>oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
 * grant access project to a group (example):
 <br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
+
+<a name="ocp_setup" />
+
+## Setup LDAP and other changes on OCP Server
+Usually there are more than one master on Openshift cluster composition. Each node should be configured to change has effect. Default configuration file can be found on path /etc/origin/master-config.yaml.
+```yaml
+
+#configuration OCP sample
+oauthConfig:
+  assetPublicURL: https://ocm-manager.org/console/
+  grantConfig:
+    method: auto
+  identityProviders:
+  - challenge: true
+    login: true
+    mappingMethod: claim
+    name: LDAP
+    provider:
+      apiVersion: v1
+      attributes:
+        email:
+        - mail
+        id:
+        - dn
+        name:
+        - cn
+        preferredUsername:
+        - cn
+      bindDN: CN=svc_openshift_ldap,OU=service accounts,OU=Users,O=CORP
+      bindPassword:
+        file: bindPassword.encrypted
+        keyfile: bindPassword.key
+      ca: /etc/origin/master/LDAP-CORP_ldap_ca.crt
+      insecure: false
+      kind: LDAPPasswordIdentityProvider
+      url: ldaps://10.80.30.61:636/ou=Users,O=CORP?cn?sub?(&(objectClass=inetOrgPerson)(employeeStatus=Active))
+```
+After some some change is done on configuration file, use the following commands on each node:
+```
+# Restart API Kubernetes services
+master-restart api api
+
+# Restart Controller services
+master-restart controllers controllers
+```
 
 <a name="deploy-existing-image" />
 
@@ -215,7 +261,7 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 
 <a name="login_error_ldap" />
 
-### Login Error using LDAP
+### Login error using LDAP after applying new changes
 Authentication error occurred on LDAP authentication: if the problem is not related to wrong typing credential issue or LDAP setting, you may be facing a problem of identity. Follow the steps:
 * Get the users list
 ```
