@@ -7,6 +7,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Deploy a existing image](#deploy-existing-image)
    1. [Policies, Access and Roles](#policies)
    1. [Setup LDAP and other changes on OCP Server](#ocp_setup)
+   1. [Access Pod Terminal](#pod-terminal)
    1. [Kibana - Troubleshooting](#kibana)
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
@@ -124,6 +125,21 @@ master-restart api api
 
 # Restart Controller services
 master-restart controllers controllers
+```
+
+<a name="pod-terminal" />
+
+## Access Pod Terminal
+Access the terminal pod from console, following the steps:
+```
+# select the project
+oc project <project-name>
+
+# list the desired pod
+oc get pods
+
+# go into terminal
+oc rsh <pod-name>
 ```
 
 <a name="deploy-existing-image" />
