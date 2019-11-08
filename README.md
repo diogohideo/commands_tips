@@ -4,7 +4,6 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
 # Table of Contents
 1. [Jenkins](#jenkins)
 1. [Openshift](#openshift)
-   1. [Deploy a existing image](#deploy-existing-image)
    1. [Policies, Access and Roles](#policies)
    1. [Setup LDAP and other changes on OCP Server](#ocp_setup)
    1. [Access Pod Terminal](#pod-terminal)
@@ -25,7 +24,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
 1. [Utilities](#utilities)
    1. [Exporting CA Certificates](#certificates)
 
-<a name="jenkins" />
+<a name="jenkins"/>
 
 # Jenkins
 
@@ -60,6 +59,21 @@ println "out> $sout err> $serr"
 * to a deployed app guestbook, how to attach the config map "default" using comandline:
 <br/>oc set env --from=configmap/config-default dc/guest-book: update the environment variable from a config map
 * oc get nodes - check node availability
+* oc policy add-role-to-user view system:serviceaccount:myproject:default: add view access to default service account on a project
+* oc get all -o name: list all resources has been created to the project
+* oc get all --selector app=\<label-value> -o name: shows all resources assigned to a label created during route creation
+* oc delete all --sector app=\<label-value>: delete all resource related to specified label
+* oc new-app --search openshiftkatacoda/blog-django-py - checks if a image is valid
+* oc new-app openshiftkatacoda/blog-django-py: deploy a image
+* oc expose service/blog-django-py - expose the deployed image to public
+* oc get route/blog-django-py - get the external route
+* oc get imagestream -o name - list all image pulled into openshift
+* oc describe imagestream/blog-django-py - show complete information of pulled image
+* oc new-project \<proj-name>
+* oc delete project \<proj-name>
+* oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
+* oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
+* oc delete all -l app=\<application name> - delete a existing project application
 
 <a name="policies" />
 
@@ -141,24 +155,6 @@ oc get pods
 # go into terminal
 oc rsh <pod-name>
 ```
-
-<a name="deploy-existing-image" />
-
-## Deploy a existing image
-* oc policy add-role-to-user view system:serviceaccount:myproject:default: add view access to default service account on a project
-* oc get all -o name: list all resources has been created to the project
-* oc get all --selector app=\<label-value> -o name: shows all resources assigned to a label created during route creation
-* oc delete all --sector app=\<label-value>: delete all resource related to specified label
-* oc new-app --search openshiftkatacoda/blog-django-py - checks if a image is valid
-* oc new-app openshiftkatacoda/blog-django-py: deploy a image
-* oc expose service/blog-django-py - expose the deployed image to public
-* oc get route/blog-django-py - get the external route
-* oc get imagestream -o name - list all image pulled into openshift
-* oc describe imagestream/blog-django-py - show complete information of pulled image
-* oc new-project \<proj-name>
-* oc delete project \<proj-name>
-* oc import-image openshiftkatacoda/blog-django-py --confirm: import the image into the openshift without deploying it
-* oc new-app blog-django-py --name blog-1 - deploy an existing image from openshift
 
 <a name="kibana" />
 
