@@ -13,6 +13,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Odo](#odo)
    1. [Troubleshooting](#troubleshooting)
          1. [Login error using LDAP after applying new changes](#login_error_ldap)
+         1. [Pods on Pending Status - 0/X nodes are available: X Insufficient memory, X node(s) had taints that the pod didn't tolerate](#ocp_insuficient_memory)
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
@@ -294,6 +295,13 @@ oc delete identity LDAP:cn=John_37,ou=Empresas,ou=Parceiros,ou=Usuarios,o=ENTERP
 ```
 oc delete user John_37
 ```
+
+<a name="ocp_insuficient_memory" />
+
+### Pods on Pending Status - 0/X nodes are available: X Insufficient memory, X node(s) had taints that the pod didn't tolerate
+When facing this problem, two main issues may be affecting the pod to start up:
+* Resource limits: the min cpu of container was defined to high value, p.e. 650MiB. Since the container needed less resource it couldn't start because of this restriction. On container resource limit, it's not recommended to define a minimum set to memory ou cpu. Only if you suposed to and know what are doing.
+* Low quota resource to openshift project: if your resource max memory, max cpu or max pods is on the edge, consider raising it. There was a curious situation that it was remaing 1 cpu unit free. My pod was suposed to consume 1 unit, but still the status was locked on pending. When I raised the cpu limit, the status changed to running.
 
 <a name="docker" />
 
