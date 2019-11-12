@@ -308,7 +308,17 @@ When facing this problem, two main issues may be affecting the pod to start up:
 
 # Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content
 After running the pipeline, the image wasn't being updated on Openshift registry. Checking the deploying log on Jenkins, the sha (container hash code) generated to container is the same of the preexisting image on registry. On that case, the image is not replaced. Since it is not changed, the Openshift doesn't update the pod image.
-To force the Openshift to update the image, the current image can be erased using the Openshift Console: Build -> Images -> Select the image to delete.
+To force the Openshift to update the image, the current image can be erased using the Openshift Console:
+* Delete all resources related to the pod:
+```
+#  list the services of a project
+oc get services -n <project>
+
+# select the service by name and delete it all resources related to it:
+oc delete all -l app=<name of selected service>
+```
+* Delete the image: Build -> Images -> Select the image to delete.
+<br/> Run the deploy process again and it will work.
 
 <a name="docker" />
 
