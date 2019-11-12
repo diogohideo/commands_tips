@@ -14,6 +14,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Troubleshooting](#troubleshooting)
          1. [Login error using LDAP after applying new changes](#login_error_ldap)
          1. [Pods on Pending Status - 0/X nodes are available: X Insufficient memory, X node(s) had taints that the pod didn't tolerate](#ocp_insuficient_memory)
+         1. [Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content](#frontend_ocp_empty_container)
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
@@ -302,6 +303,12 @@ oc delete user John_37
 When facing this problem, two main issues may be affecting the pod to start up:
 * Resource limits: the min cpu of container was defined to high value, p.e. 650MiB. Since the container needed less resource it couldn't start because of this restriction. On container resource limit, it's not recommended to define a minimum set to memory ou cpu. Only if you suposed to and know what are doing.
 * Low quota resource to openshift project: if your resource max memory, max cpu or max pods is on the edge, consider raising it. There was a curious situation that it was remaing 1 cpu unit free. My pod was suposed to consume 1 unit, but still the status was locked on pending. When I raised the cpu limit, the status changed to running.
+
+<a name="frontend_ocp_empty_container" />
+
+# Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content
+After running the pipeline, the image wasn't being updated on Openshift registry. Checking the deploying log on Jenkins, the sha (container hash code) generated to container is the same of the preexisting image on registry. On that case, the image is not replaced. Since it is not changed, the Openshift doesn't update the pod image.
+To force the Openshift to update the image, the current image can be erased using the Openshift Console: Build -> Images -> Select the image to delete.
 
 <a name="docker" />
 
