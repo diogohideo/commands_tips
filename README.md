@@ -6,7 +6,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
 1. [Openshift](#openshift)
    1. [Policies, Access and Roles](#policies)
    1. [Setup LDAP and other changes on OCP Server](#ocp_setup)
-   1. [Access Pod Terminal](#pod-terminal)
+   1. [Connect to Pod Terminal](#pod-terminal)
    1. [Kibana - Troubleshooting](#kibana)
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
@@ -145,7 +145,7 @@ master-restart controllers controllers
 
 <a name="pod-terminal" />
 
-## Access Pod Terminal
+## Connect to Pod Terminal
 Access the terminal pod from console, following the steps:
 ```
 # select the project
