@@ -19,6 +19,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
       1. [dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](#dial_tcp)
+1. [Ansible](#ansible)
 1. [Git](#git)
 1. [AWS](#aws)
    1. [Bucket (S3)](#s3)
@@ -401,6 +402,37 @@ Set the following parameters:
 systemctl daemon-reload
 service docker restart
 docker restart $(docker ps -q) 
+```
+1. [Ansible](#)
+
+<a name="ansible" />
+
+# Ansible
+It always about to do some tasks on a targe server. Let's start on this jorney doing the following steps:
+* The first thing to do is guarantee ssh services on target server
+```
+# install a hand package manager
+apt-get install aptitude
+
+# get the name on the catalog of what is needed. p.e. openssl server
+aptitude search openssh
+
+# openssl-server can be located on the list. Use it as parameter
+aptitude install openssh-server
+
+# start the ssh service
+service ssh start
+```
+
+* Generate the pair key:
+```
+# generate a key using default values. Hit <Enter> three times
+ssh-keygen -t rsa
+```
+
+* Copy ~/.ssh/id_rsa.pub to a shared volume or to an appropriate director.
+```
+cp ~/.ssh/id_rsa.pub <dest>
 ```
 
 <a name="git" />
