@@ -24,6 +24,8 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
 1. [AWS](#aws)
    1. [Bucket (S3)](#s3)
 1. [Unix Commands](#unix)
+   1. [Most common Unix Commands](#unix-common-cmd)
+   1. [apt-get to MacOS - Why use HomeBrew Instead](#apt-get-mac)
 1. [Utilities](#utilities)
    1. [Exporting CA Certificates](#certificates)
 
@@ -498,6 +500,10 @@ aws s3 sync folder-dho s3://amazing-bucket-dho/files
 
 # Unix Commands
 
+<a name="unix-common-cmd" />
+
+## Most common Unix Commands
+
 Show main used commands on unix and shell.
 - net user /domain <user_login>
 - Test network conectivity:
@@ -509,6 +515,14 @@ Show main used commands on unix and shell.
 - mount and map the fs on unix: sudo mount /dev/sdf /mnt
 - unmap the fs: sudo umount /mnt
 
+<a name="apt-get-mac" />
+
+## apt-get to MacOS - Why use HomeBrew Instead
+Unfortunately this no apt-get package manager as used in Linux. Instead, HomeBrew can be used.
+```
+# Install Homebrew using Perl
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 <a name="utilities" />
 
 # Utilities
