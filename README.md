@@ -101,7 +101,7 @@ Commands to setup roles.
 * grant access project to a group (example):
 <br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
 * grant cluster admin
-<br/>oc adm policy add-cluster-role-to-user cluster-admin gvarandaoc adm policy add-cluster-role-to-user cluster-admin \<user>
+<br/>oc adm policy add-cluster-role-to-user cluster-admin \<user>
 
 <a name="ocp_setup" />
 
