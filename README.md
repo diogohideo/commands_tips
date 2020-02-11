@@ -540,5 +540,5 @@ Some platforms needs certification authority to connect to other services. In my
 
 Test connection using curl using telnet protocol:
 ```
-curl -v telnet://starapp.enterprisetrn.corp:9000
+curl -v telnet://portal.com:9000
 ```
