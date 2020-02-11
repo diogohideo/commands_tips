@@ -28,6 +28,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [apt-get to MacOS - Why use HomeBrew Instead](#apt-get-mac)
 1. [Utilities](#utilities)
    1. [Exporting CA Certificates](#certificates)
+   1. [Test connection telnet protocol using CURL](#curl_telnet)
 
 <a name="jenkins"/>
 
@@ -532,3 +533,12 @@ Unfortunately this no apt-get package manager as used in Linux. Instead, HomeBre
 ## Exporting CA Certificates
 
 Some platforms needs certification authority to connect to other services. In my case, to connect Openshift CLI plugin from Jenkins to Openshift, it was necessary to export certificates from the site. It was a little trick, since it is necessary to be clear which format of certificate is necessary to be exported.
+
+<a name="curl_telnet" />
+
+## Test connection telnet protocol using CURL
+
+Test connection using curl using telnet protocol:
+```
+curl -v telnet://starapp.enterprisetrn.corp:9000
+```
