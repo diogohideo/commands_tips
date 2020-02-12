@@ -329,9 +329,13 @@ oc delete all -l app=<name of selected service>
 # Docker
 
 Show docker commands and config details.
-* systemctl daemon-reload - daemon aplica as alterações realizados no /etc/sysconfig/docker
-* systemctl restart docker - restart docker reinializa o serviço
-* docker restart $(docker ps -q) - como o restart do systemctl altera o pid do processo pai bem como os descritores de rede, necessita do restart
+* systemctl daemon-reload - daemon apply changes made on /etc/sysconfig/docker
+* systemctl restart docker - restart docker service
+* docker restart $(docker ps -q) - since the command "systemctl restart docker" change the parent pid and network descriptors, the service need to be restarted
+* How to get into docker bash for Unix images:
+```
+docker exec -it 326e bash (just mention the first 4 digits) 
+```
 
 <a name="troubleshooting_docker" />
 
@@ -448,29 +452,39 @@ Show most used commands on Git.
 <br/>Workaround: git config --global http.sslVerify false 
 
  
-- Editar configurações globais: 
-<br/> git config --global -e 
+- Edit global settings: 
+```
+git config --global -e 
+```
 
-- Armazenar as credentials globalmente: 
-<br/> git config --global credential.helper store 
+- Store a credential globally: 
+```
+git config --global credential.helper store 
+```
 
-- Processo de commit: 
-<br/> git add . 
-<br/> git commit -m "Commit inicial com aplicação com hello world" 
-<br/> git push -u origin develop 
-<br/> git remote –v – equivalente ao svn info (determina a url de origem do repositorio) 
+- Commit steps:
+```
+git add . 
+git commit -m "commit message" 
+git push -u origin <inform a branch. i.e.: develop>
+git remote –v – show the source URL
+```
 
-- rename de pastas / arquivos envolve add e rm 
-<br/> git add . - inclui o diretório renomeado 
-<br/> git rm . - remove os arquivos que não existem mais no diretorio do projeto 
+- Renaming steps using add and rm commands:
+```
+git add .
+git rm .
+```
 
-- comando completo para commit 
-<br/> git fetch; git pull; git add .; git commit -m 'Updated Pipeline'; git push -u origin featureopenshift; git fetch; git pull;java -jar jenkins-cli.jar -s http://10.82.100.13:8080/ -auth @../jenkins_secret.pass build CAN_can-orchestratorV2/develop/ -s –v 
-<br/> Nota: para usar o jenkins-cli, baixar [aqui](https://jenkins.io/doc/book/managing/cli/). O Arquivo jenkins_secret.pass pode ter qualquer nome, bastando que seja criado e o path passado em @. O conteudo do arquivo deverá ser: username:password
-
-- comando para executar bash dentro do docker 
-docker exec -it 326e bash (não precisa digitar o hash inteiro, apenas os 4 primeiros digitos) 
-
+- Complete command to commit and trigger a Jenkins: 
+```
+git fetch; git pull; git add .; git commit -m 'commit message'; git push -u origin <inform a branche. i.e.: develop>; git fetch; git pull;java -jar jenkins-cli.jar -s http://<host>:<port>/ -auth @../jenkins_secret.pass build CAN_can-orchestratorV2/develop/ -s –v 
+```
+Note: To use jenkins-cli, get it [here](https://jenkins.io/doc/book/managing/cli/). The jenkins_secret.pass file must contains the jenkins credentials as follow: 
+```
+username:password
+```
+   
 <a name="aws" />
 
 # AWS
