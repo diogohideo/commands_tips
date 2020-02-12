@@ -21,6 +21,8 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
       1. [dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](#dial_tcp)
 1. [Ansible](#ansible)
 1. [Git](#git)
+1. [SonarQube](#sonar)
+   1. [API](#sonar_api)
 1. [AWS](#aws)
    1. [Bucket (S3)](#s3)
 1. [Unix Commands](#unix)
@@ -492,7 +494,24 @@ Note: To use jenkins-cli, get it [here](https://jenkins.io/doc/book/managing/cli
 ```
 username:password
 ```
-   
+
+1. [SonarQube](#sonar)
+
+<a name="sonar" />
+
+# SonarQube
+
+<a name="sonar_api" />
+
+## API
+How to use API services using token:
+```
+curl --insecure -u <token>: https://<domain_url>/api/projects/search?projects=<project-name>
+
+# example
+curl --insecure -u xxxxxxxxxxxxxxxxxxxxxxxx: https://<domain_url>/api/projects/search?projects=aws-sample
+```
+
 <a name="aws" />
 
 # AWS
