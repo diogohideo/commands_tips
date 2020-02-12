@@ -470,6 +470,14 @@ git push -u origin <inform a branch. i.e.: develop>
 git remote –v – show the source URL
 ```
 
+- Create a new branch
+```
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+$ vim list.lst
+$ git commit -a -m 'commit message'
+```
+
 - Renaming steps using add and rm commands:
 ```
 git add .
