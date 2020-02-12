@@ -509,8 +509,9 @@ How to use API services using token:
 curl --insecure -u <token>: https://<domain_url>/api/projects/search?projects=<project-name>
 
 # example
-curl --insecure -u xxxxxxxxxxxxxxxxxxxxxxxx: https://<domain_url>/api/projects/search?projects=aws-sample
+curl --insecure -u abc4f71730660ed09f6a006b75d4fdfc638c31dca: https://sonarqube.org.br/api/projects/search?projects=aws-sample
 ```
+Note: Check for availaible API Services on SonarQube footnotes link and search for WebApi.
 
 <a name="aws" />
 
