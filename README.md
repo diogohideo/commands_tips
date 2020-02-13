@@ -27,7 +27,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Bucket (S3)](#s3)
 1. [Unix Commands](#unix)
    1. [Most common Unix Commands](#unix-common-cmd)
-   1. [Troubleshooting DNS Servers](#trouble-dns)
+   1. [Troubleshooting DNS Servers using DIG](#trouble-dns)
    1. [apt-get to MacOS - Why use HomeBrew Instead](#apt-get-mac)
 1. [Utilities](#utilities)
    1. [Exporting CA Certificates](#certificates)
@@ -561,7 +561,7 @@ Show main used commands on unix and shell.
 
 <a name="trouble-dns" />
 
-## Troubleshooting DNS Servers
+## Troubleshooting DNS Servers using DIG
 Use dig command to troubleshoot a DNS Server. In my case, I also used time, because dig show no problem to resolve a name through a specified DNS Server. Since it was a intermittent problem, in which it gets a long time to respond, a loop can deal with the problem:
 ```bash
 for ((i=0; i<200;i++)); do echo "Test \#$i:"; time dig @10.82.9.13 docker-registry-default.hml.apps; done
