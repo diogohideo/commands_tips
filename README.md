@@ -27,6 +27,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Bucket (S3)](#s3)
 1. [Unix Commands](#unix)
    1. [Most common Unix Commands](#unix-common-cmd)
+   1. [Troubleshooting DNS Servers](#trouble-dns)
    1. [apt-get to MacOS - Why use HomeBrew Instead](#apt-get-mac)
 1. [Utilities](#utilities)
    1. [Exporting CA Certificates](#certificates)
@@ -557,6 +558,42 @@ Show main used commands on unix and shell.
 - to check the device to format the fs or mount: ls /dev -ltr
 - mount and map the fs on unix: sudo mount /dev/sdf /mnt
 - unmap the fs: sudo umount /mnt
+
+<a name="trouble-dns" />
+
+## Troubleshooting DNS Servers
+Use dig command to troubleshoot a DNS Server. In my case, I also used time, because dig show no problem to resolve a name through a specified DNS Server. Since it was a intermittent problem, in which it gets a long time to respond, a loop can deal with the problem:
+```bash
+for ((i=0; i<200;i++)); do echo "Test \#$i:"; time dig @10.82.9.13 docker-registry-default.hml.apps; done
+
+Test #1
+; <<>> DiG 9.11.5-P1-1ubuntu2.6-Ubuntu <<>> @10.82.9.13 docker-registry-default.cloudhom.apps
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 10320
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4000
+;; QUESTION SECTION:
+;docker-registry-default.cloudhom.apps. IN A
+
+;; ANSWER SECTION:
+docker-registry-default.cloudhom.apps. 19 IN A	10.85.0.112
+
+;; Query time: 17 msec
+;; SERVER: 10.82.9.13#53(10.82.9.13)
+;; WHEN: Thu Feb 13 12:09:35 EST 2020
+;; MSG SIZE  rcvd: 82
+
+
+real	0m5.036s
+user	0m0.007s
+sys	0m0.004s
+
+# ... and go on more 199 times...
+```
 
 <a name="apt-get-mac" />
 
