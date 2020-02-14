@@ -15,6 +15,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
          1. [Login error using LDAP after applying new changes](#login_error_ldap)
          1. [Pods on Pending Status - 0/X nodes are available: X Insufficient memory, X node(s) had taints that the pod didn't tolerate](#ocp_insuficient_memory)
          1. [Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content](#frontend_ocp_empty_container)
+         1. [Persistent Volume is getting long to be deleted (pvc)](#pvc_getting_long_time_oc)
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
@@ -313,7 +314,7 @@ When facing this problem, two main issues may be affecting the pod to start up:
 
 <a name="frontend_ocp_empty_container" />
 
-# Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content
+### Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content
 After running the pipeline, the image wasn't being updated on Openshift registry. Checking the deploying log on Jenkins, the sha (container hash code) generated to container is the same of the preexisting image on registry. On that case, the image is not replaced. Since it is not changed, the Openshift doesn't update the pod image.
 To force the Openshift to update the image, the current image can be erased using the Openshift Console:
 * Delete all resources related to the pod:
@@ -326,6 +327,27 @@ oc delete all -l app=<name of selected service>
 ```
 * Delete the image: Build -> Images -> Select the image to delete.
 <br/> Run the deploy process again and it will work.
+
+<a name="pvc_getting_long_time_oc" />
+
+### Persistent Volume is getting long to be deleted (pvc)
+When are you stuck trying to delete a pvc:
+* First of all - check every pod and deployment config and dettach the pvc from them
+* Check the markup on pvc:
+```bash
+ oc edit pv <pvc name>
+ 
+# find the following line:
+#  finalizers:
+#  - kubernetes.io/pvc-protection
+# OR
+#  finalizers:
+#  - something like background deletion
+# 
+# ACTION: Delete these lines
+
+oc delete pvc <pvc name> --grace-period=0 --force
+```
 
 <a name="docker" />
 
