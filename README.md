@@ -24,6 +24,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
 1. [Git](#git)
 1. [SonarQube](#sonar)
    1. [API](#sonar_api)
+   1. [Coverage Issues - OK in Eclipse SonarLint and NOK on Pipeline](#sonar_coverage)
 1. [AWS](#aws)
    1. [Bucket (S3)](#s3)
 1. [Unix Commands](#unix)
@@ -535,6 +536,36 @@ curl --insecure -u <token>: https://<domain_url>/api/projects/search?projects=<p
 curl --insecure -u abc4f71730660ed09f6a006b75d4fdfc638c31dca: https://sonarqube.org.br/api/projects/search?projects=aws-sample
 ```
 Note: Check for availaible API Services on SonarQube footnotes link and search for WebApi.
+
+<a name="sonar_coverage" />
+
+## Coverage Issues - OK in Eclipse SonarLint and NOK on Pipeline
+Check your pom.xml file or other deployment manager file and check if jacoco plugin is declared.
+```xml
+    <build>
+            <plugins>
+                <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.7.7.201606060606</version>
+                        <executions>
+                                <execution>
+                                    <goals>
+                                            <goal>prepare-agent</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>report</id>
+                                    <phase>prepare-package</phase>
+                                    <goals>
+                                            <goal>report</goal>
+                                    </goals>
+                                </execution>
+                        </executions>
+                </plugin>
+            </plugins>
+    </build>
+```
 
 <a name="aws" />
 
