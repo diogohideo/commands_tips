@@ -392,7 +392,7 @@ mkdir /etc/docker/certs.d/registry-docker.apps:443
 service docker restart
 docker restart $(docker ps -q) 
 ```
-See more details on [this page](https://docs.docker.com/engine/security/certificates/#understand-the-configuration)
+See more details on [this page](https://docs.docker.com/engine/security/certificates/#understand-the-configuration).
 
 <a name="dial_tcp" />
 
