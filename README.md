@@ -348,6 +348,7 @@ When are you stuck trying to delete a pvc:
 # 
 # ACTION: Delete these lines
 
+oc patch pvc <pvc name> -p '{"metadata":{"finalizers": [] }}'
 oc delete pvc <pvc name> --grace-period=0 --force
 ```
 
