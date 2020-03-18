@@ -35,6 +35,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
 1. [Utilities](#utilities)
    1. [Exporting CA Certificates](#certificates)
    1. [Test connection telnet protocol using CURL](#curl_telnet)
+   1. [How to netstat without netstat?](#no_netstat)
 
 <a name="jenkins"/>
 
@@ -715,3 +716,28 @@ Test connection using curl using telnet protocol:
 ```
 curl -v telnet://portal.com:9000
 ```
+
+<a name="no_netstat" />
+
+## How to netstat without netstat?
+Is it possible? For sure! When a custom or basic unix image is used, netstat commands is not available by default. In that case, you should get data from /proc/net/tcp. Since the information is in hex format, there is a good trick to decode the information to ANSI:
+```bash
+awk 'function hextodec(str,ret,n,i,k,c){
+    ret = 0
+    n = length(str)
+    for (i = 1; i <= n; i++) {
+        c = tolower(substr(str, i, 1))
+        k = index("123456789abcdef", c)
+        ret = ret * 16 + k
+    }
+    return ret
+}
+function getIP(str,ret){
+    ret=hextodec(substr(str,index(str,":")-2,2)); 
+    for (i=5; i>0; i-=2) {
+        ret = ret"."hextodec(substr(str,i,2))
+    }
+    ret = ret":"hextodec(substr(str,index(str,":")+1,4))
+    return ret
+} 
+NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print local" - "remote}}' /proc/net/tcp ```
