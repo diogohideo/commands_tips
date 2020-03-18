@@ -15,7 +15,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
          1. [Login error using LDAP after applying new changes](#login_error_ldap)
          1. [Pods on Pending Status - 0/X nodes are available: X Insufficient memory, X node(s) had taints that the pod didn't tolerate](#ocp_insuficient_memory)
          1. [Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content](#frontend_ocp_empty_container)
-         1. [Persistent Volume is getting too long to be deleted (pvc)](#pvc_getting_long_time_oc)
+         1. [PVC - Persistent Volume is getting too long to be deleted or is stucked (pvc)](#pvc_getting_long_time_oc)
 1. [Docker](#docker)
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
@@ -332,7 +332,7 @@ oc delete all -l app=<name of selected service>
 
 <a name="pvc_getting_long_time_oc" />
 
-### Persistent Volume is getting too long to be deleted (pvc)
+### PVC - Persistent Volume is getting too long to be deleted or is stucked (pvc)
 When are you stuck trying to delete a pvc:
 * First of all - check every pod and deployment config and dettach the pvc from them
 * Check the markup on pvc:
