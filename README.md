@@ -161,7 +161,7 @@ oauthConfig:
         - cn
         preferredUsername:
         - cn
-      bindDN: CN=svc_openshift_ldap,OU=service accounts,OU=Users,O=CORP
+      bindDN: CN=svc_openshift_ldap,OU=service accounts,OU=UsersX,O=CORPX
       bindPassword:
         file: bindPassword.encrypted
         keyfile: bindPassword.key
