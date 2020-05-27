@@ -94,23 +94,39 @@ println "out> $sout err> $serr"
 ## Policies, Access and Roles
 Commands to setup roles.
 * list all roles:
-<br/>oc get groups
+```bash
+oc get groups
+```
 * list all commands:
-<br/>oc policy -h
+```bash
+oc policy -h
+```
 * assign edit / view to a group
-<br/>oc policy add-role-to-group edit \<group>  -n <project/namespace>
+```bash
+oc policy add-role-to-group edit \<group>  -n <project/namespace>
+```
 * Add another user to a project so that they can work within the project, including creating new deployments or deleting applications.
-<br/>oc adm policy add-role-to-user edit \<username> -n \<project>
+```bash
+oc adm policy add-role-to-user edit \<username> -n \<project>
+```
 * Add another user to a project but such that they can only view what is in the project.
 <br/>oc adm policy add-role-to-user view \<username> -n \<project>
 * Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
-<br/>oc adm policy add-role-to-user admin \<username> -n \<project>
+```bash
+oc adm policy add-role-to-user admin \<username> -n \<project>
+```
 * grant access project to a user
-<br/>oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+```bash
+oc adm policy add-role-to-user \<admin|basic-user|view|edit|system:deployer|system:image-builder|system:image-puller|system:image-pusher> \<user> -n \<project-name>
+```
 * grant access project to a group (example):
-<br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
+```bash
+oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
+```
 * grant cluster admin
-<br/>oc adm policy add-cluster-role-to-user cluster-admin \<user>
+```bash
+oc adm policy add-cluster-role-to-user cluster-admin \<user>
+```
 * list role
 ```bash
 oc get rolebindings -n can-dev
