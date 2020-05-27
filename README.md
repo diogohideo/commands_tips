@@ -8,6 +8,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Setup LDAP and other changes on OCP Server](#ocp_setup)
    1. [Connect to Pod Terminal](#pod-terminal)
    1. [Kibana - Troubleshooting](#kibana)
+   1. [Quotas - Adjusting Quota and Burst Quota](#quotas)
    1. [Metrics](#metrics)
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
@@ -110,6 +111,10 @@ Commands to setup roles.
 <br/>oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
 * grant cluster admin
 <br/>oc adm policy add-cluster-role-to-user cluster-admin \<user>
+* list role
+```bash
+oc get rolebindings -n can-dev
+```
 
 <a name="ocp_setup" />
 
@@ -200,6 +205,103 @@ green  open   .kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57                  
 oc exec <logging-es-data-master-hash-of-pod> --  curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca -XDELETE 'https://localhost:9200/.kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57'
 ```
 <br/> Note the parameter "https://localhost:9200/.kibana.bb615795cff20a34fd133d6a13e4a9c5a9ce5e57". The index name include also the initial "."
+
+<a name="quotas" />
+
+## Quotas - Adjusting Quota and Burst Quota
+
+Using the following quota.yml as a quota setup baseline:
+```yaml
+kind: List
+metadata: {}
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    annotations:
+      openshift.io/quota-tier: Small
+    labels:
+      quota-tier: Small
+    name: quota
+  spec:
+    hard:
+      cpu: "1"
+      memory: 6Gi
+    scopes:
+    - NotTerminating
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    annotations:
+      openshift.io/quota-tier: Small
+    labels:
+      quota-tier: Small
+    name: burst-quota
+  spec:
+    hard:
+      cpu: "2"
+      memory: 7Gi
+- apiVersion: v1
+  kind: LimitRange
+  metadata:
+    annotations:
+      openshift.io/quota-tier: Small
+    labels:
+      quota-tier: Small
+    name: limits
+  spec:
+    limits:
+    - max:
+        cpu: 1000m
+        memory: 756Mi
+      min:
+        cpu: 0m
+        memory: 64Mi
+      type: Pod
+    - default:
+        cpu: 900m
+        memory: 512Mi
+      defaultRequest:
+        cpu: 20m
+        memory: 64Mi
+      max:
+        cpu: 900m
+        memory: 756Mi
+      min:
+        cpu: 20m
+        memory: 64Mi
+      type: Container
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  labels:
+    quota-tier: Small
+  name: pod-quota
+spec:
+  hard:
+    pods: "40"
+status: {}
+```
+
+This sections present the steps to adjust quotas on Openshift:
+* list limits and ResourceQuota from your project
+```bash
+oc get limits,ResourceQuota -n <namespace / project>
+```
+* delete limits and ResourceQuota from your namespace;
+```bash
+# actually, you just need to copy the item listed and replace the brackets bellow accordilly
+# to its type (limits or ResourceQuota)
+oc delete limits <limites> -n <namespace / project>
+oc delete ResourceQuota <resource_quota> -n <namespace / project>
+```
+* apply new quota as described in quota.yml.
+```bash
+oc apply -f <path>/quota.yml -n <namespace / project>
+```
 
 <a name="metrics" />
 
