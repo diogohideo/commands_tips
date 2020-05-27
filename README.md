@@ -168,7 +168,7 @@ oauthConfig:
       ca: /etc/origin/master/LDAP-CORP_ldap_ca.crt
       insecure: false
       kind: LDAPPasswordIdentityProvider
-      url: ldaps://10.80.30.61:636/ou=Users,O=CORP?cn?sub?(&(objectClass=inetOrgPerson)(employeeStatus=Active))
+      url: ldaps://<IP>:636/ou=UsersX,O=CORPX?cn?sub?(&(objectClass=inetOrgPerson)(employeeStatus=Active))
 ```
 After some some change is done on configuration file, use the following commands on each node:
 ```
