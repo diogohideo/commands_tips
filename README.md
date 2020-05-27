@@ -110,7 +110,9 @@ oc policy add-role-to-group edit \<group>  -n <project/namespace>
 oc adm policy add-role-to-user edit \<username> -n \<project>
 ```
 * Add another user to a project but such that they can only view what is in the project.
-<br/>oc adm policy add-role-to-user view \<username> -n \<project>
+```bash
+oc adm policy add-role-to-user view \<username> -n \<project>
+```
 * Add another user to a project such that they are effectively a joint owner of the project and have administration rights over it, including the ability to delete the project.
 ```bash
 oc adm policy add-role-to-user admin \<username> -n \<project>
