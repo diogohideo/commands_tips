@@ -129,7 +129,7 @@ oc policy add-role-to-group edit Openshift_HML_CAN_Edit -n can-hml
 ```bash
 oc adm policy add-cluster-role-to-user cluster-admin \<user>
 ```
-* list role
+* list roles
 ```bash
 oc get rolebindings -n can-dev
 ```
