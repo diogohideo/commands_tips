@@ -13,6 +13,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [S2I - Source to Image](#s2i)
    1. [Odo](#odo)
    1. [Troubleshooting](#troubleshooting)
+         1. [Issues to push a new image to Openshift Registry](#push_new_image_error_ocp)
          1. [Login error using LDAP after applying new changes](#login_error_ldap)
          1. [Pods on Pending Status - 0/X nodes are available: X Insufficient memory, X node(s) had taints that the pod didn't tolerate](#ocp_insuficient_memory)
          1. [Frontend - new image is not being pushed and the page is showing a default ngnix Openshift content](#frontend_ocp_empty_container)
@@ -405,6 +406,46 @@ Abstracts the kubernetes and Openshift concepts so that developer focus on code.
 <a name="troubleshooting" />
 
 ## Troubleshooting
+
+<a name="push_new_image_error_ocp" />
+
+### Issues to push a new image to Openshift Registry
+
+If you are facing issues to push a image to Openshift, consider if the storage of registry has reached the limits. See the following issue example:
+```
+d7144e60274b: Retrying in 4 seconds
+3bb5a23ae2db: Retrying in 4 seconds
+d7144e60274b: Retrying in 3 seconds
+3bb5a23ae2db: Retrying in 3 seconds
+d7144e60274b: Retrying in 2 seconds
+3bb5a23ae2db: Retrying in 2 seconds
+d7144e60274b: Retrying in 1 second
+3bb5a23ae2db: Retrying in 1 second
+received unexpected HTTP status: 500 Internal Server Error
+ERROR: Job failed: exit code 1
+```
+Go to Application > Pods > docker-registry-x-yyyyy > access terminal container. Check if the space is full:
+```
+df -h
+
+Filesystem                             Size  Used Avail Use% Mounted on
+overlay                                 50G  8.3G   42G  17% /
+tmpfs                                  7.8G     0  7.8G   0% /dev
+tmpfs                                  7.8G     0  7.8G   0% /sys/fs/cgroup
+10.85.17.55:glusterfs-registry-volume   46G   37G   10G  100% /registry
+...
+
+```
+If your "/registry" is showing 100% of use, then, as emergency, you need to free the space executing your prune process on your command line:
+```bash
+oc adm prune images \
+                  --keep-tag-revisions=$IMAGE_PRUNE_KEEP_TAG_REVISIONS \
+                  --keep-younger-than=$IMAGE_PRUNE_KEEP_YOUNGER_THAN --confirm
+
+# $IMAGE_PRUNE_KEEP_TAG_REVISIONS - replace with how many lasting images you will keep from each microservice. I recommend at least 2.
+# $IMAGE_PRUNE_KEEP_YOUNGER_THAN - replace with the max age in hours of a image. If you have a Repository like Nexus, then, you can define a low value like 6 (hours).
+
+```
 
 <a name="login_error_ldap" />
 
