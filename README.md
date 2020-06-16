@@ -710,8 +710,6 @@ $ git config --global core.pager cat
 ```
 Source:[StackOverflow](https://stackoverflow.com/questions/17077973/how-to-make-git-diff-write-to-stdout)
 
-1. [SonarQube](#sonar)
-
 <a name="sonar" />
 
 # SonarQube
