@@ -24,6 +24,8 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
       1. [dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](#dial_tcp)
 1. [Ansible](#ansible)
 1. [Git](#git)
+   1. [Troubleshooting](#troubleshooting_git)
+         1. [Problem to use diff - "/bin/busybox.exe less -R: /bin/busybox.exe: No such file or directory" or leading to an editor](#git_diff_issues)
 1. [SonarQube](#sonar)
    1. [API](#sonar_api)
    1. [Coverage Issues - OK in Eclipse SonarLint and NOK on Pipeline](#sonar_coverage)
@@ -683,6 +685,30 @@ Note: To use jenkins-cli, get it [here](https://jenkins.io/doc/book/managing/cli
 ```
 username:password
 ```
+
+<a name="troubleshooting_git" />
+
+## Troubleshooting
+
+<a name="git_diff_issues" />
+
+### Problem to use diff - "/bin/busybox.exe less -R: /bin/busybox.exe: No such file or directory" or leading to an editor
+By default, Git sends its diff output (and generally any output that may be more than a screenful) to the system's pager, which is a utility that prints only one screenful of output at a time. If you want to disable the pager when you run a command, pass --no-pager to Git:
+
+```bash
+$ git --no-pager <subcommand> <options>
+```
+This can be run for any Git command.
+
+If you want to disable it by default for diff only, you can set the diff pager to cat by running:
+```bash
+$ git config pager.diff false
+```
+If you want to disable it by default for all commands, you can set the Git pager to cat by running:
+```bash
+$ git config --global core.pager cat
+```
+Source:[StackOverflow](https://stackoverflow.com/questions/17077973/how-to-make-git-diff-write-to-stdout)
 
 1. [SonarQube](#sonar)
 
