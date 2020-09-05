@@ -40,6 +40,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Exporting CA Certificates](#certificates)
    1. [Test connection telnet protocol using CURL](#curl_telnet)
    1. [How to netstat without netstat?](#no_netstat)
+   1. [Check which service is available on port?](#available_service)
 
 <a name="jenkins"/>
 
@@ -925,4 +926,12 @@ function getIP(str,ret){
     ret = ret":"hextodec(substr(str,index(str,":")+1,4))
     return ret
 } 
-NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print local" - "remote}}' /proc/net/tcp ```
+NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print local" - "remote}}' /proc/net/tcp 
+```
+
+<a name="available_service" />
+
+## Check which service is available on port
+```bash
+netstat -ntlp
+``` 
