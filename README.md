@@ -22,6 +22,7 @@ Tip & sintax command used in Unix and Windows to several platforms useful to Dev
    1. [Troubleshooting](#troubleshooting_docker)
       1. [X509: certificate signed by unknown authority](#certificate_error)
       1. [dial tcp: lookup <docker_registry_url> on XXX.XXX.XXX.XXX:XX: no such host](#dial_tcp)
+      1. [Execute docker command without sudo](#docker_not_sudo)
 1. [Ansible](#ansible)
 1. [Git](#git)
    1. [Troubleshooting](#troubleshooting_git)
@@ -604,6 +605,28 @@ systemctl daemon-reload
 service docker restart
 docker restart $(docker ps -q) 
 ```
+
+<a name="docker_not_sudo" />
+
+### Execute docker command without sudo
+When docker command is frequently used, it is a waste of time typing "sudo docker <action>". To avoid that, just include your user to docker group on Linux:
+* login in a new group:
+```
+newgrp docker
+```
+* create docker group if it doesn't exists:
+```
+sudo groupadd docker
+```
+* assign your user to docker group
+```
+sudo usermod -aG docker $USER
+```
+* Now validate it, executing the following docker command without sudo:
+```
+docker ps
+```
+
 1. [Ansible](#)
 
 <a name="ansible" />
